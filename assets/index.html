@@ -1,0 +1,234 @@
+<html>
+	<head>
+		<title>Zofia Kreasi Games</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+		<script src="zkwebapp.js"></script>
+		<script src="js/phaser.js"></script>
+		<script src="js/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="jssocials.css">
+        <link rel="stylesheet" type="text/css" href="jssocials-theme-minima.css">
+		<script src="jssocials.js"></script>
+		<link rel="stylesheet" type="text/css" href="zkleaderboard.css">
+		<style>
+			@font-face {
+				font-family: gameFont;
+				src: url(assets/Esteban-Regular.ttf);
+			}
+			body{
+				font-family: gameFont;
+				padding: 0px;
+				margin: 0px;
+				background-color: black;
+				user-select: none;
+			}
+			h1, h2, h3, h4, h5, p{
+				margin: 0;
+				margin-bottom: 10px;
+			}
+			#drawer{
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				width: 350px;
+				overflow: auto;
+				color: white;
+				background-color: rgba(0, 0, 0, .85);
+			}
+			
+			.ditem{
+				padding: 10px;
+				border-bottom: 1px solid gray;
+			}
+			
+			.ditem:hover{
+				background-color: white;
+				color: black;
+			}
+			
+			#mainmenu{
+				display: none;
+				position: fixed;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				padding: 20px;
+				text-align: center;
+			}
+			
+			.mmbutton{
+				border: 2px solid white;
+				background-color: black;
+				color: white;
+				padding: 10px;
+				min-width: 100px;
+				margin: 10px;
+				border-radius: 5px;
+				display: inline-block;
+			}
+			
+			.mmbutton:active{
+				background-color: gray;
+			}
+			
+			#screen{
+				display: none; 
+				position: fixed;
+				top: 75px;
+				left: 25px;
+				right: 25px;
+				bottom: 75px;
+				border-radius: 5px;
+				border: 1px solid gray;
+				background-color: rgba(255, 255, 255, .9);
+				padding: 10px;
+				overflow: auto;
+			}
+			
+			#fader{
+				background-color: black;
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+			
+			#barsbutton{
+				color: white;
+				font-size: 20px;
+				position: fixed;
+				top: 10px;
+				left: 10px;
+				font-weight: bold;
+				display: none;
+				background-color: rgba(0, 0, 0, .25);
+				border-radius: 5px;
+				padding: 10px;
+			}
+			
+			#timer{
+				position: fixed;
+				top: 0;
+				right: 0;
+				padding: 10px;
+				color: white;
+				text-align: right;
+				font-size: 12px;
+				display: none;
+			}
+			
+			.bignum{
+				font-size: 20px;
+			}
+			
+			#levelinfo{
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				display: none;
+				text-align: center;
+				font-size: 50px;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="js/leveltiles.js"></script>
+		<script src="js/main.js"></script>
+		
+		<!-- EDITABLE START -->
+		
+		<div id="mainmenu">
+			<div class="mmbutton" onclick="play(); playSndClick();">Play</div>
+			<div class="mmbutton" onclick="showScreen(1); playSndClick();">Choose a Car</div>
+			<div class="mmbutton" onclick="showScreen(2); playSndClick();">How To Play</div>
+			<div class="mmbutton" onclick="showLeaderBoard(); playSndClick();">Leaderboard</div>
+		</div>
+		
+		<div id="barsbutton" onclick="playSndClick(); $('#drawer').show();"><i class="fa fa-bars"></i></div>
+		
+		<div id="timer">Score:<br><span id="currentscore" class="bignum">100</span><br>Time left:<br><span id="timertext" class="bignum">100</span></div>
+		
+		<div id="levelinfo"></div>
+		
+		<div id="screen">
+			<div style="float: right; font-size: 25px;" onclick="$('#screen').hide();"><i class="fa fa-times-circle"></i></div>
+			<div id="screencontent"></div>
+		</div>
+		
+		<div id="fader"></div>
+		
+		<!-- EDITABLE END -->
+		
+		<!-- ZK Leaderboard -->
+		<div id="leaderboarddimmer" onclick="hideLeaderboard();"></div>
+		<div id="nicknameForm">
+			<h3 style="color: white">Enter your Nickname</h3>
+			<input id="nickname" placeholder="Nickname"><br>
+			<button onclick="submitNickname()">Start</button>
+		</div>
+		<div id="leaderboardpage">
+			<h1>Leaderboard</h1>
+			<div id="leaderboard">Loading...</div>
+			<div style="text-align: center"><button onclick="hideLeaderboard()">Close</button></div>
+		</div>
+		<div id="scriptHolder"></div>
+		<script src="zkleaderboardinterface.js"></script>
+		<script src="zkleaderboard.js"></script>
+		<script>
+			function showLeaderBoard(){
+				refreshLeaderboard();
+				$("#leaderboardpage").show();
+				$("#leaderboarddimmer").show();
+			}
+			function hideLeaderboard(){
+				$("#leaderboardpage").hide();
+				$("#leaderboarddimmer").hide();
+			}
+		</script>
+		<!-- End Of ZK Leaderboard -->
+		
+		<div id="drawer">
+			<p align="center" style="margin: 30px;"><img src="assets/logo.png" style="margin: 10px;"><br><span style="font-size: 14px;">Cardriventure</span></p>
+			<div class="ditem" onclick="playSndClick(); play(); $('#drawer').hide();">Play</div>
+			<div class="ditem" onclick="playSndClick(); game.state.start('MainMenu'); $('#drawer').hide();">Main menu</div>
+			<div class="ditem" onclick="playSndClick(); showScreen(1); $('#drawer').hide();">Choose a car</div>
+			<div class="ditem" onclick="playSndClick(); showLeaderBoard(); $('#drawer').hide();">Leaderboard</div>
+			<div class="ditem" onclick="playSndClick(); showScreen(2); $('#drawer').hide();">How to play?</div>
+			
+			<div id="applulad" style="margin: 10px;"></div>
+			<script>
+				$("document").ready(function(){
+					$.ajax({
+						url: "http://applulbayt.ciihuy.com/applulbayt/applulad.php?regular=zk",
+						dataType: "jsonp"
+					});
+				});
+			</script>
+			
+			<!--SHAREBUTTONS-->
+    		<div style="text-align: center; margin-top: 50px; margin-bottom: 50px; color: white; font-size: 14px; padding: 15px; font-size: 14px;">
+				<p class="lil"><a href="http://zk.ciihuy.com/"><img src="zk.png" width="45px"></a><br><br>Developed by<br>Habibie (Zofia Kreasi)</p>
+				<p class="lil">Graphic Arts by <a href="https://www.freepik.com/" style="color: lime;">freepik.com</a></p>
+				<div id="share"></div>
+			</div>
+    		<script>
+    			$("#share").jsSocials({
+    				url: zk.shareLink(),
+    				text: zk.shareText,
+    				showLabel: false,
+    				showCount: false,
+    				shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "pocket", "whatsapp", "viber", "messenger", "vkontakte", "telegram", "line"]
+    			});
+    		</script>
+    		<!--END OF SHAREBUTTONS-->
+		</div>
+		<script src="https://www.w3counter.com/tracker.js?id=118521"></script>
+	</body>
+</html>

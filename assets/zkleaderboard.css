@@ -1,0 +1,66 @@
+#leaderboarddimmer{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, .7);
+	display: none;
+}
+
+#nicknameForm{
+	display: none;
+	position: fixed;
+	background-color: black;
+	color: #088500;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 50px;
+	text-align: center;	
+}
+
+#nicknameForm input{
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+}
+
+#nicknameForm button{
+	margin: 10px;
+	padding: 10px;
+	color: white;
+	background-color: #B41932;
+	border: 3px solid #B41932;
+	border-radius: 5px;
+}
+
+#leaderboardpage{
+	display: none;
+	position: fixed;
+	top: 50px;
+	left: 50px;
+	bottom: 50px;
+	right: 50px;
+	background-color: white;
+	border: 3px solid #B41932;
+	overflow-y: auto;
+	color: black;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+#leaderboardpage p{
+	padding: 10px;
+}
+
+#leaderboardpage button{
+	padding: 10px;
+	background-color: #B41932;
+	border: 3px solid #B41932;
+	color: white;
+	margin: 10px;
+	border-radius: 5px;
+}
