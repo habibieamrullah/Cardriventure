@@ -1,16 +1,12 @@
 <html>
 	<head>
-		<title>Zofia Kreasi Games</title>
+		<title>Drift Maze</title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
-		<script src="zkwebapp.js"></script>
 		<script src="js/phaser.js"></script>
 		<script src="js/jquery.js"></script>
-		<link rel="stylesheet" type="text/css" href="jssocials.css">
-        <link rel="stylesheet" type="text/css" href="jssocials-theme-minima.css">
-		<script src="jssocials.js"></script>
-		<link rel="stylesheet" type="text/css" href="zkleaderboard.css">
+		
 		<style>
 			@font-face {
 				font-family: gameFont;
@@ -145,15 +141,14 @@
 		<!-- EDITABLE START -->
 		
 		<div id="mainmenu">
-			<div class="mmbutton" onclick="play(); playSndClick();">Play</div>
-			<div class="mmbutton" onclick="showScreen(1); playSndClick();">Choose a Car</div>
-			<div class="mmbutton" onclick="showScreen(2); playSndClick();">How To Play</div>
-			<div class="mmbutton" onclick="showLeaderBoard(); playSndClick();">Leaderboard</div>
+			<div class="mmbutton" onclick="play(); playSndClick();">Mainkan</div>
+			<div class="mmbutton" onclick="showScreen(1); playSndClick();">Pilih Mobil</div>
+			<div class="mmbutton" onclick="showScreen(2); playSndClick();">Cara Bermain</div>
 		</div>
 		
 		<div id="barsbutton" onclick="playSndClick(); $('#drawer').show();"><i class="fa fa-bars"></i></div>
 		
-		<div id="timer">Score:<br><span id="currentscore" class="bignum">100</span><br>Time left:<br><span id="timertext" class="bignum">100</span></div>
+		<div id="timer">Skor:<br><span id="currentscore" class="bignum">100</span><br>Waktu Tersisa:<br><span id="timertext" class="bignum">100</span></div>
 		
 		<div id="levelinfo"></div>
 		
@@ -162,73 +157,24 @@
 			<div id="screencontent"></div>
 		</div>
 		
-		<div id="fader"></div>
-		
-		<!-- EDITABLE END -->
-		
-		<!-- ZK Leaderboard -->
-		<div id="leaderboarddimmer" onclick="hideLeaderboard();"></div>
-		<div id="nicknameForm">
-			<h3 style="color: white">Enter your Nickname</h3>
-			<input id="nickname" placeholder="Nickname"><br>
-			<button onclick="submitNickname()">Start</button>
-		</div>
-		<div id="leaderboardpage">
-			<h1>Leaderboard</h1>
-			<div id="leaderboard">Loading...</div>
-			<div style="text-align: center"><button onclick="hideLeaderboard()">Close</button></div>
-		</div>
-		<div id="scriptHolder"></div>
-		<script src="zkleaderboardinterface.js"></script>
-		<script src="zkleaderboard.js"></script>
-		<script>
-			function showLeaderBoard(){
-				refreshLeaderboard();
-				$("#leaderboardpage").show();
-				$("#leaderboarddimmer").show();
-			}
-			function hideLeaderboard(){
-				$("#leaderboardpage").hide();
-				$("#leaderboarddimmer").hide();
-			}
-		</script>
-		<!-- End Of ZK Leaderboard -->
-		
 		<div id="drawer">
-			<p align="center" style="margin: 30px;"><img src="assets/logo.png" style="margin: 10px;"><br><span style="font-size: 14px;">Cardriventure</span></p>
-			<div class="ditem" onclick="playSndClick(); play(); $('#drawer').hide();">Play</div>
-			<div class="ditem" onclick="playSndClick(); game.state.start('MainMenu'); $('#drawer').hide();">Main menu</div>
-			<div class="ditem" onclick="playSndClick(); showScreen(1); $('#drawer').hide();">Choose a car</div>
-			<div class="ditem" onclick="playSndClick(); showLeaderBoard(); $('#drawer').hide();">Leaderboard</div>
-			<div class="ditem" onclick="playSndClick(); showScreen(2); $('#drawer').hide();">How to play?</div>
-			
-			<div id="applulad" style="margin: 10px;"></div>
-			<script>
-				$("document").ready(function(){
-					$.ajax({
-						url: "http://applulbayt.ciihuy.com/applulbayt/applulad.php?regular=zk",
-						dataType: "jsonp"
-					});
-				});
-			</script>
+			<p align="center" style="margin: 30px;"><img src="assets/logo.png" width="128px" style="margin: 10px;"><br><span style="font-size: 14px;">Drift Maze</span></p>
+			<div class="ditem" onclick="playSndClick(); play(); $('#drawer').hide();">Mainkan</div>
+			<div class="ditem" onclick="playSndClick(); game.state.start('MainMenu'); $('#drawer').hide();">Menu</div>
+			<div class="ditem" onclick="playSndClick(); showScreen(1); $('#drawer').hide();">Pilih Mobil</div>
+			<div class="ditem" onclick="playSndClick(); showScreen(2); $('#drawer').hide();">Cara Bermain</div>
 			
 			<!--SHAREBUTTONS-->
     		<div style="text-align: center; margin-top: 50px; margin-bottom: 50px; color: white; font-size: 14px; padding: 15px; font-size: 14px;">
-				<p class="lil"><a href="http://zk.ciihuy.com/"><img src="zk.png" width="45px"></a><br><br>Developed by<br>Habibie (Zofia Kreasi)</p>
-				<p class="lil">Graphic Arts by <a href="https://www.freepik.com/" style="color: lime;">freepik.com</a></p>
-				<div id="share"></div>
+				<p class="lil">Developed by<br>CiihuyCom Games</p>
+				
 			</div>
-    		<script>
-    			$("#share").jsSocials({
-    				url: zk.shareLink(),
-    				text: zk.shareText,
-    				showLabel: false,
-    				showCount: false,
-    				shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "pocket", "whatsapp", "viber", "messenger", "vkontakte", "telegram", "line"]
-    			});
-    		</script>
+    		
     		<!--END OF SHAREBUTTONS-->
 		</div>
-		<script src="https://www.w3counter.com/tracker.js?id=118521"></script>
+		
+		<div id="fader"></div>
+		
+		
 	</body>
 </html>
