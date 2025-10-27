@@ -1,6 +1,6 @@
 //app data storage system
 var appData = {
-	title : "cardriventure",
+	title : "topdowndrive",
 	money : 0,
 	cartype : 1,
 	carspeed : 250,
@@ -82,7 +82,7 @@ ZKGame.MainMenu = {
 		}
 	},
 	create: function() {
-		zk.showBanner();
+
 		sndClick = game.add.audio("click");
 		sndFail = game.add.audio("fail");
 		sndSuccess = game.add.audio("success");
@@ -107,9 +107,9 @@ ZKGame.MainMenu = {
 			t.param = currt.param;
 		}
 		
-		this.titletext = game.add.bitmapText(game.world.centerX, game.world.centerY - 50, "gameFont", "Cardriventure", 80);
+		this.titletext = game.add.bitmapText(game.world.centerX, game.world.centerY - 50, "gameFont", "Drift Maze", 80);
 		this.titletext.anchor.setTo(.5);
-		this.st = game.add.bitmapText(game.world.centerX, this.titletext.y + 50, "gameFont", "A game by Zofia Kreasi", 30);
+		this.st = game.add.bitmapText(game.world.centerX, this.titletext.y + 50, "gameFont", "Permainan Maze Mobil Nge-drift", 30);
 		this.st.anchor.setTo(.5);
 		$("#mainmenu").show();
 		$("#timer").hide();
@@ -149,26 +149,25 @@ ZKGame.Transition = {
 		var lilText;
 		switch (levelStatus){
 			case 0 : // very first level
-				bigText = "Ready to drive?";
-				lilText = "Tap \"play\" to start playing";
+				bigText = "Sudah Siap?";
+				lilText = "Tap \"Mainkan\" untuk memulai";
 				break;
 			case 1 : // time is up
-				zk.showAd();
-				zk.vibrate();
+
 				sndFail.play();
-				bigText = "Time's up. Try again?";
-				lilText = "Tap \"play\" to replay";
+				bigText = "Waktunya habis!";
+				lilText = "Tap \"Mainkan\" untuk main lagi";
 				break;
 			case 2 : // great!
-				zk.showAd();
+
 				sndSuccess.play();
-				bigText = "Great!";
-				lilText = "Tap \"play\" to start the next level";
+				bigText = "Keren!";
+				lilText = "Tap \"Mainkan\" untuk ke level berikutnya";
 				break;
 			case 3 : // end of levels
 				sndSuccess.play();
-				bigText = "The End :D";
-				lilText = "Wait for new update to play next levels";
+				bigText = "Tamat :D";
+				lilText = "Tunggu update berikutnya yah...";
 				break;
 		}
 		
@@ -207,14 +206,14 @@ ZKGame.Play = {
 		}
 	},
 	create: function() {
-		zk.hideBanner();
+
 		game.sound.stopAll();
 		sndInGame.play();
 		$("#mainmenu").hide();
 		$("#barsbutton").show();
 		$("#timer").show();
 		$("#fader").show().fadeOut();
-		$("#levelinfo").html("Level " + (currentLevel+1) + " of " + levelTiles.length).css({ top : innerHeight/3 + "px" }).fadeIn();
+		$("#levelinfo").html("Level " + (currentLevel+1) + " dari " + levelTiles.length).css({ top : innerHeight/3 + "px" }).fadeIn();
 		setTimeout(function(){
 			$("#levelinfo").fadeOut();
 		}, 1500);
@@ -452,7 +451,6 @@ function checkUnlockedLevels(l){
 	appData.money += 100;
 	appData.money += levelTimer;
 	saveData();
-	updateScore(appData.money);
 	if(!levelStatus == 0){
 		levelStatus = 2;
 	}
@@ -529,14 +527,14 @@ function showScreen(n){
 	var txt = "";
 	switch (n){
 		case 1 :
-			txt += "<h2 align='center'>Choose your Car:</h2>";
+			txt += "<h2 align='center'>Pilih Mobil:</h2>";
 			for(var i = 0; i < maxCar; i++){
 				txt += "<div style='display: inline-block; padding: 10px; margin: 5px;' onclick='selectCar(" + (i+1) + ")'><img src='assets/car" + (i+1) + ".png'></div>";
 			}
 			break;
 		case 2 :
-			txt += "<h2 align='center'>How to Play?</h2>";
-			txt += "<p>Cardriventure is an adventure maze game. In this maze you are inside a car and you have to get out of the maze in a given time to enter the next maze.</p><p>In this game you are driving your favorite car. You can select any car you like. The main objective in this game is to reach the finish line as quick as possible. Each time you are in a level, you must drive your car to the finish line within some amount of time. If time is up, you can replay and try it again. If you reach the finish line before the time is over, you will unlock the next level. Each time you unlock a new level, you will be rewarded with score that add up your total score. Get more score and compare your score with other players in game's leaderboard.</p><p>Start line marked with single black and white tile and finish line marked with double black and white tile. Reach finish line to go to next level. You can go back to previous level by reaching the start line.</p>";
+			txt += "<h2 align='center'>Cara Bermain</h2>";
+			txt += "<p>Drift Maze adalah permainan maze mencari garis finish dengan cara menyetir mobil dari arah atas. Ada timer dan batasan waktu, jadi kamu harus buruan sampai ke garis finish sebelum waktunya habis.</p>";
 			break;
 	}
 	$("#screencontent").html(txt);
